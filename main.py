@@ -63,6 +63,6 @@ async def lvl(ctx):
 
 
 # my_secret = os.environ['new_token']
-bot.run("OTM3MzgzNzQ0NTg5OTUwOTk4.Yfa8pA.6Cvf7DlcH1-EmBk7Wt2vvFOTH0o")
+bot.run("OTM3MzgzNzQ0NTg5OTUwOTk4.Yfa8pA.qUWJ_ioULzkCqirqkNeFYv0aTX0")
 
 # my_secret = os.environ['token']
