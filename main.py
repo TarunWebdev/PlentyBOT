@@ -1,11 +1,10 @@
 from pytezos import pytezos
-
-
-import os
 from discord.ext import commands
 from mee6_py_api import API
 import discord
-import random
+import re
+
+finderr = re.compile("'with': {'string':(.+')}")
 
 pytezos = pytezos.using(key="2.json")
 pytezos.activate_account()
@@ -20,49 +19,85 @@ async def on_ready():
    print('Logged in as')
    print(bot.user.name)
     
+@bot.command(name='displayembed')
+async def displayembed(ctx):
+  embed=discord.Embed(title="Pleanty NFT BOT", description="Welcome to Plenty NFT BOT! You have been of great value to our server, to appreciate your participation and want to reward you with a free NFT! Tap the button below to claim.", color=0x00ff33)
+  embed.add_field(name="Minimum Level Requirement", value="Level 10", inline=True)
+  embed.set_footer(text="Type !mint < Your tezos  wallet adderss >")
+  await ctx.send(embed=embed)
 
 @bot.command(name='mint', help='mint help.')
 async def mint(ctx,  arg):
     level = await mee6API.levels.get_user_level(ctx.author.id)
     if level < 10:
-      print("no mint")
-      opg = pytezos.bulk(
-        builder.mintNFT(address=arg , discord=ctx.author.id ),
-      ).autofill().sign().inject(_async=False)
+      print("You do not meet the min req for a mint")
     elif level >= 10 and level < 20:
       print("level 10 mint")
-    elif level >= 20 and level < 30:
+      try:
+        opg = pytezos.bulk(
+                builder.mintNFT(address=arg , discord=str(ctx.author.id) ),
+              ).autofill().sign().inject(_async=False)
+        await ctx.channel.send("Mint Successful, check your Wallet")
+      except Exception as e:
+        if(finderr.findall(str(e))):
+          print(finderr.findall(str(e))[0])
+        else:
+          print("unknown error: "+ str(e))
+    elif level >= 15 and level < 20:
+      print("level 15 mint")
+      try:
+        opg = pytezos.bulk(
+                builder.mintNFT(address=arg , discord=str(ctx.author.id) ),
+              ).autofill().sign().inject(_async=False)
+        await ctx.channel.send("Mint Successful, check your Wallet")
+      except Exception as e:
+        if(finderr.findall(str(e))):
+          print(finderr.findall(str(e))[0])
+        else:
+          print("unknown error: "+ str(e))
+    elif level >= 20 and level < 25:
       print("level 20 mint")
-    elif level >= 30 and level < 40:
-      print("level 30 mint")
-    elif level >= 40 and level < 50:
-      print("level 40 mint")
+      try:
+        opg = pytezos.bulk(
+                builder.mintNFT(address=arg , discord=str(ctx.author.id) ),
+              ).autofill().sign().inject(_async=False)
+        await ctx.channel.send("Mint Successful, check your Wallet")
+      except Exception as e:
+        if(finderr.findall(str(e))):
+          print(finderr.findall(str(e))[0])
+        else:
+          print("unknown error: "+ str(e))
+    elif level >= 25 and level < 30:
+      print("level 25 mint")
+      try:
+        opg = pytezos.bulk(
+                builder.mintNFT(address=arg , discord=str(ctx.author.id) ),
+              ).autofill().sign().inject(_async=False)
+        await ctx.channel.send("Mint Successful, check your Wallet")
+      except Exception as e:
+        if(finderr.findall(str(e))):
+          print(finderr.findall(str(e))[0])
+        else:
+          print("unknown error: "+ str(e))
     else:
-      print("level 50 mint")
-    await ctx.channel.send(arg)
-    await ctx.channel.send(str(ctx.author.id))
+      print("level 30 mint")
+      try:
+        opg = pytezos.bulk(
+                builder.mintNFT(address=arg , discord=str(ctx.author.id) ),
+              ).autofill().sign().inject(_async=False)
+        await ctx.channel.send("Mint Successful, check your Wallet")
+      except Exception as e:
+        if(finderr.findall(str(e))):
+          print(finderr.findall(str(e))[0])
+        else:
+          print("unknown error: "+ str(e))
+    await ctx.channel.send("Minted Successfully to : " + arg +" \n by user ID : " + ctx.author.id)
     
-
-
-
 @bot.command(name='lvl', help='lvl help.')
 async def lvl(ctx):
-    #leaderboard
-    # leaderboard_page = await mee6API.levels.get_leaderboard_page(0)
-    # await ctx.channel.send(leaderboard_page)
-
-    #details
-    # details = await mee6API.levels.get_user_details(user_id)
-    # print(details)
-
-    #level
     await ctx.channel.send(ctx.author.id)    
     level = await mee6API.levels.get_user_level(ctx.author.id)
     await ctx.channel.send(level)
 
+bot.run("")
 
-
-# my_secret = os.environ['new_token']
-bot.run("OTM3MzgzNzQ0NTg5OTUwOTk4.Yfa8pA.qUWJ_ioULzkCqirqkNeFYv0aTX0")
-
-# my_secret = os.environ['token']
