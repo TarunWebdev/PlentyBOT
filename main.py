@@ -21,7 +21,7 @@ async def on_ready():
     
 @bot.command(name='displayembed')
 async def displayembed(ctx):
-  embed=discord.Embed(title="Pleanty NFT BOT", description="Welcome to Plenty NFT BOT! You have been of great value to our server, to appreciate your participation and want to reward you with a free NFT! Tap the button below to claim.", color=0x00ff33)
+  embed=discord.Embed(title="Plenty NFT BOT", description="Welcome to Plenty NFT BOT! You have been of great value to our server, to appreciate your participation and want to reward you with a free NFT! Tap the button below to claim.", color=0x00ff33)
   embed.add_field(name="Minimum Level Requirement", value="Level 10", inline=True)
   embed.set_footer(text="Type !mint < Your tezos  wallet adderss >")
   await ctx.send(embed=embed)
@@ -42,8 +42,10 @@ async def mint(ctx,  arg):
       except Exception as e:
         if(finderr.findall(str(e))):
           print(finderr.findall(str(e))[0])
+          await ctx.channel.send(finderr.findall(str(e))[0])
         else:
           print("unknown error: "+ str(e))
+          await ctx.channel.send(str(e))
     elif level >= 15 and level < 20:
       print("level 15 mint")
       try:
@@ -54,8 +56,10 @@ async def mint(ctx,  arg):
       except Exception as e:
         if(finderr.findall(str(e))):
           print(finderr.findall(str(e))[0])
+          await ctx.channel.send(finderr.findall(str(e))[0])
         else:
           print("unknown error: "+ str(e))
+          await ctx.channel.send(str(e))
     elif level >= 20 and level < 25:
       print("level 20 mint")
       try:
@@ -66,8 +70,10 @@ async def mint(ctx,  arg):
       except Exception as e:
         if(finderr.findall(str(e))):
           print(finderr.findall(str(e))[0])
+          await ctx.channel.send(finderr.findall(str(e))[0])
         else:
           print("unknown error: "+ str(e))
+          await ctx.channel.send(str(e))
     elif level >= 25 and level < 30:
       print("level 25 mint")
       try:
@@ -78,8 +84,10 @@ async def mint(ctx,  arg):
       except Exception as e:
         if(finderr.findall(str(e))):
           print(finderr.findall(str(e))[0])
+          await ctx.channel.send(finderr.findall(str(e))[0])
         else:
           print("unknown error: "+ str(e))
+          await ctx.channel.send(str(e))
     elif level>=30:
       print("level 30 mint")
       try:
@@ -90,8 +98,10 @@ async def mint(ctx,  arg):
       except Exception as e:
         if(finderr.findall(str(e))):
           print(finderr.findall(str(e))[0])
+          await ctx.channel.send(finderr.findall(str(e))[0])
         else:
           print("unknown error: "+ str(e))
+          await ctx.channel.send(str(e))
 
     
 @bot.command(name='lvl', help='lvl help.')
