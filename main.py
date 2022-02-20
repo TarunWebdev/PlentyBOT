@@ -8,7 +8,7 @@ finderr = re.compile("'with': {'string':(.+')}")
 
 pytezos = pytezos.using(key="2.json")
 pytezos.activate_account()
-builder = pytezos.contract('KT1B8HUxpgyUgd73dic6nmoionDd5JBaJKXV')
+builder = pytezos.contract('KT1RPeo9eQ4inwmvPC6Ma3SWVe3rGeBuc4S4')
 
 
 bot = commands.Bot(command_prefix='!')
