@@ -31,6 +31,7 @@ async def mint(ctx,  arg):
     level = await mee6API.levels.get_user_level(ctx.author.id)
     if level < 10:
       print("You do not meet the min req for a mint")
+      await ctx.channel.send("You do not meet the min req for a mint")
     elif level >= 10 and level < 20:
       print("level 10 mint")
       try:
@@ -79,7 +80,7 @@ async def mint(ctx,  arg):
           print(finderr.findall(str(e))[0])
         else:
           print("unknown error: "+ str(e))
-    else:
+    elif level>=30:
       print("level 30 mint")
       try:
         opg = pytezos.bulk(
@@ -91,7 +92,7 @@ async def mint(ctx,  arg):
           print(finderr.findall(str(e))[0])
         else:
           print("unknown error: "+ str(e))
-    await ctx.channel.send("Minted Successfully to : " + arg +" \n by user ID : " + ctx.author.id)
+
     
 @bot.command(name='lvl', help='lvl help.')
 async def lvl(ctx):
